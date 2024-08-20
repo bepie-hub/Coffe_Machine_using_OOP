@@ -1,0 +1,41 @@
+class MoneyMachine:
+    def __init__(self):
+        """Creates a money machine with money_earned = 0 in the beginning"""
+        self.money_earned = 0
+        self.total = 0
+        self.quarter = 0.25
+        self.dime = 0.1
+        self.nickle = 0.05
+        self.penny = 0.01
+
+    def report(self):
+        """Shows report of money in coffee machine."""
+        print(f"Money: ${self.money_earned}")
+
+    def make_payment(self, cost):
+        paid_enough = True
+        print("Please insert coins")
+        quarters = int(input("How many quarters?: "))
+        dimes = int(input("How many dimes?: "))
+        nickles = int(input("How many nickles?: "))
+        pennies = int(input("How many pennies?: "))
+
+        self.total = (self.quarter * quarters) + (self.dime * dimes) + (self.nickle * nickles) + (
+                    self.penny * pennies)
+
+        if cost > self.total:
+            print(f"Sorry, there is not enough money. Money refunded.")
+            paid_enough = False
+        else:
+            change = round(self.total - cost, 2)
+            print(f"Here's ${change} in change.")
+            self.money_earned += cost
+            self.total = 0
+        return paid_enough
+
+
+
+
+
+
+
