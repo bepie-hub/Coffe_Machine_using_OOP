@@ -1,0 +1,29 @@
+class CoffeeMaker:
+    def __init__(self):
+        """Creates beggining resources for coffee machine."""
+        self.resources = {"water": 300, "milk": 200, "coffee": 100}
+
+    def report(self):
+        """Shows report of all avaiable resources."""
+        keys_list = list(self.resources.keys())
+        print(f"{keys_list[0].capitalize()}: {self.resources[keys_list[0]]}ml")
+        print(f"{keys_list[1].capitalize()}: {self.resources[keys_list[1]]}ml")
+        print(f"{keys_list[2].capitalize()}: {self.resources[keys_list[2]]}g")
+
+    def is_resource_sufficient(self, drink):
+        """Check if ordered drink can be made - is there enough resources"""
+        can_make = True
+        for key in drink.ingredients:
+            if drink.ingredients[key] > self.resources[key]:
+                print(f"Sorry, there is not enough {key}.")
+                can_make = False
+        return can_make
+
+    def make_coffee(self, order):
+        for key in order.ingredients:
+            self.resources[key] -= order.ingredients[key]
+        print(f"Here is your {order.name}. Enjoy!")
+
+
+
+
